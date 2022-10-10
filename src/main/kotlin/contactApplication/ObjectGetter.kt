@@ -1,5 +1,7 @@
 package contactApplication
 
+import java.util.*
+
 object ObjectGetter:GetContactObject {
 
     private lateinit var contacts:MutableList<Contact>
@@ -59,12 +61,12 @@ object ObjectGetter:GetContactObject {
             var text:String
             val textContainsContacts = mutableListOf<Contact>()
             val textNotContainsContact= mutableListOf<Contact>()
-            print("Enter the Text : ").also{text = InputGetter.getUserInput({userInput -> userInput.toString()}) as String}
+            print("Enter the Text : ").also{text = (InputGetter.getUserInput({userInput -> userInput.toString()}) as String).lowercase().trim() }
 
             for(contact in contacts)
             {
                 with(contact){
-                    if((user_name.contains(text) || user_mobileNo.contains(text) || user_emailId.contains(text) || address?.door_no?.contains(text) == true || address?.street?.contains(text) == true || address?.district?.contains(text) == true || address?.pin_code!!.contains(text) ))
+                    if((user_name.lowercase().contains(text) || user_mobileNo.lowercase().contains(text) || user_emailId.lowercase().contains(text) || (address?.door_no)?.lowercase()!!.contains(text) || address?.street?.lowercase()!!.contains(text) || address?.district?.lowercase()!!.contains(text) || address?.pin_code?.lowercase()!!.contains(text)))
                         textContainsContacts.add(this)
                     else
                         textNotContainsContact.add(this) }

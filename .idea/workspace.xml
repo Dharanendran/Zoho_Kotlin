@@ -1,34 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0842cb29-bad5-47f0-af69-3a20c6ac908e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sample.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/AddressDataClass.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/AddressGetter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/ContactDataClass.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/ContactOperations.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/DeleteContactOperation.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/EditContactOperation.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/FavouriteOperation.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/GetContactObject.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/GetNewContactOperation.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/GetValidData.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/InitialView.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/InputGetter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/ObjectGetter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/ViewContactOperation.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/practise/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/practise/SqlConnection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/practise/main" afterDir="false" />
+    <list default="true" id="0842cb29-bad5-47f0-af69-3a20c6ac908e" name="Changes" comment="by using kotlin unique keywords amd functionalities">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/contactApplication/ObjectGetter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/ObjectGetter.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +112,14 @@
       <option name="presentableId" value="Default" />
       <updated>1664006159086</updated>
     </task>
+    <task id="LOCAL-00001" summary="by using kotlin unique keywords amd functionalities">
+      <created>1665314793892</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1665314793892</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,6 +132,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="by using kotlin unique keywords amd functionalities" />
+    <option name="LAST_COMMIT_MESSAGE" value="by using kotlin unique keywords amd functionalities" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
