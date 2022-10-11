@@ -66,15 +66,18 @@ object ObjectGetter:GetContactObject {
             for(contact in contacts)
             {
                 with(contact){
-                    if((user_name.lowercase().contains(text) || user_mobileNo.lowercase().contains(text) || user_emailId.lowercase().contains(text) || (address?.door_no)?.lowercase()!!.contains(text) || address?.street?.lowercase()!!.contains(text) || address?.district?.lowercase()!!.contains(text) || address?.pin_code?.lowercase()!!.contains(text)))
+                    if(user_name.lowercase().contains(text) || user_mobileNo.lowercase().contains(text) || user_emailId.lowercase().contains(text) || (address?.door_no)?.lowercase()?.contains(text) == true || (address?.street)?.lowercase()?.contains(text) == true || (address?.district)?.lowercase()?.contains(text) == true || (address?.pin_code)?.lowercase()?.contains(text) == true)
                         textContainsContacts.add(this)
                     else
                         textNotContainsContact.add(this) }
             }
 
-            println(ViewContactOperation.viewFullContactTable(if(containState)textContainsContacts else textNotContainsContact))
+            var table = ViewContactOperation.viewFullContactTable(if(containState)textContainsContacts else textNotContainsContact)
 
             var mobileNo:String
+            if(table == "")
+                return null
+            println(table)
             println("\n------------------------Enter The Mobile Number From Above Table --------------------- ")
             return getObjectFromContacts({contact , value -> contact.user_mobileNo == value} ,"Mobile No")
         }

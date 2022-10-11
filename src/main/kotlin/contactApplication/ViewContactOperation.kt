@@ -6,7 +6,7 @@ object ViewContactOperation{
     fun viewFullContactTable(contacts : MutableList<Contact> ): String
     {
         if(contacts.isEmpty())
-            return "\n==========================There Is Not Contact To Show ! Please Add Contact ---------------------------"
+            return println("\n==========================There Is Not Contact To Show ! Please Add Contact ---------------------------").let{return ""}
 
         var contactHead =
             " _________________________________________________________________________________________\n"+
