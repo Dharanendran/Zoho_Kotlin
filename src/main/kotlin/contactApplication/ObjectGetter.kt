@@ -76,7 +76,7 @@ object ObjectGetter:GetContactObject {
 
             var mobileNo:String
             if(table == "")
-                return null
+                return getObject(contacts)
             println(table)
             println("\n------------------------Enter The Mobile Number From Above Table --------------------- ")
             return getObjectFromContacts({contact , value -> contact.user_mobileNo == value} ,"Mobile No")
