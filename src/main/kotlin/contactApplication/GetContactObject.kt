@@ -2,5 +2,5 @@ package contactApplication
 
 interface GetContactObject
 {
-    fun getObject(Contact:MutableList<Contact>):Contact?
+    fun getObject():Contact?
 }

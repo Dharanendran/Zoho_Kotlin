@@ -9,9 +9,8 @@ class GetValidData {
         fun getValidNumber():String
         {
             var number = InputGetter.getUserInput({ userInput -> userInput.toString()} ) as String
-            return if(!Pattern.matches("[a-zA-Z]+", number) && number.length in 7..13 && SqliteOperation.readQuery("SELECT * FROM WHERE phone=$number")?.let{println("The Number You Entered Is Already Exists")
-                    false} != false )
-                number
+            return if(!Pattern.matches("[a-zA-Z]+", number) && number.length in 7..13 && SqliteOperation.readQuery("SELECT * FROM contact WHERE phone=\"$number\"").isEmpty()){
+                number}
             else{
                 print("Enter Valid Mobile No : ")
                 getValidNumber()
@@ -21,12 +20,11 @@ class GetValidData {
 
         fun getValidEmail():String
         {
-            var emailId = InputGetter.getUserInput({ userInput -> userInput.toString()} ) as String
+            val emailId = InputGetter.getUserInput({ userInput -> userInput.toString()} ) as String
             val emailString = ("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 
-            return if(Pattern.compile(emailString).matcher(emailId).matches() && SqliteOperation.readQuery("SELECT * FROM WHERE phone=$emailId")?.let{println("The Email Id You Entered Is Already Exists")
-                    false} != false )
+            return if(Pattern.compile(emailString).matcher(emailId).matches() && SqliteOperation.readQuery("SELECT * FROM contact WHERE email=\"$emailId\"").isEmpty())
                 emailId
             else{
                 print("Enter Valid Email Id : ")
@@ -36,7 +34,7 @@ class GetValidData {
 
         fun getValidPinCode():String
         {
-            var pinCode = InputGetter.getUserInput({ userInput -> userInput.toString()} ) as String
+            val pinCode = InputGetter.getUserInput({ userInput -> userInput.toString()} ) as String
             val pinString = ("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$")
 
             return if(Pattern.compile(pinString).matcher(pinCode).matches())

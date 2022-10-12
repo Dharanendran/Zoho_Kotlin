@@ -2,14 +2,10 @@ package contactApplication
 
 import contactApplication.Address
 
-data class Contact(var user_name : String, var user_mobileNo : String, var user_emailId : String)
+data class Contact(var user_name : String, var user_mobileNo : String, var user_emailId : String ,var isFavourite :Int = 0)
 {
     var address: Address? = null
-    var isFavourite :Boolean = false
-    init
-    {
-        SqliteOperation.readQuery()
-    }
+
     constructor(userName : String,
                 userMobileNo : String,
                 userEmailId : String ,

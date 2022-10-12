@@ -29,7 +29,8 @@ object SQLiteConnector
                 |"doorNo" TEXT ,
                 |"Street" TEXT ,
                 |"address" TEXT ,
-                |"pinCode" TEXT)""".trimMargin()
+                |"pinCode" TEXT,
+                |"favourite" INTEGER)""".trimMargin()
 
             statement = connection.createStatement()
             statement.executeUpdate(stmt)

@@ -8,12 +8,13 @@ object EditContactOperation:GetContactObject by ObjectGetter,AddressGetter()
     {
         lateinit var editContact: Contact
 
-        if(contacts.isNotEmpty()) { getObject(contacts)?.let { editContact = it } ?: return }
+        if(contacts.isNotEmpty()) { getObject()?.let { editContact = it }}
         else{
             println("------------- There Is No Contact In Contact List To Edit ! ------------")
             return
         }
 
+        println()
         println("""Enter The Detail You Want To Edit 
                        
                        |--------> Press 1 To Edit Name
@@ -45,7 +46,8 @@ object EditContactOperation:GetContactObject by ObjectGetter,AddressGetter()
                             }
 
             }
-            editor(editContact, newValue).also{println("Contact Is Updated SuccessFully !")}
+            var primaryKey = editContact.user_mobileNo
+            editor(editContact, newValue).also{ SqliteOperation.updateQuery(editContact,primaryKey)}
         }
 
 
@@ -94,7 +96,10 @@ object EditContactOperation:GetContactObject by ObjectGetter,AddressGetter()
 
                 when (userInput)
                 {
-                    1 -> getAddress().also{editContact.address = Address(doorNo,streetName,district,pinCode)}
+                    1 -> getAddress().also{
+                        editContact.address = Address(doorNo,streetName,district,pinCode)
+                        SqliteOperation.updateQuery(editContact,editContact.user_mobileNo)
+                    }
                 }
 
             }

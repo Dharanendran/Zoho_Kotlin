@@ -4,13 +4,10 @@ import java.util.*
 
 object ObjectGetter:GetContactObject {
 
-    private lateinit var contacts:MutableList<Contact>
 
-
-    override fun getObject(contacts:MutableList<Contact>): Contact?
+    override fun getObject(): Contact?
     {
 
-        this.contacts = contacts
         println()
         println("""Enter Any Detail Of The Contact  :
 
@@ -32,8 +29,8 @@ object ObjectGetter:GetContactObject {
         }
 
         when(choice){
-            1 -> return getObjectFromContacts({ contact, value -> contact.user_mobileNo == value},"Mobile No" )
-            2 -> return getObjectFromContacts({ contact, value -> contact.user_emailId == value},"Email Id" )
+            1 -> return getObjectFromContacts("phone" )
+            2 -> return getObjectFromContacts("email" )
             3 -> return searchBy()
         }
         return null
@@ -62,7 +59,7 @@ object ObjectGetter:GetContactObject {
             val textContainsContacts = mutableListOf<Contact>()
             val textNotContainsContact= mutableListOf<Contact>()
             print("Enter the Text : ").also{text = (InputGetter.getUserInput({userInput -> userInput.toString()}) as String).lowercase().trim() }
-
+            var contacts = SqliteOperation.readQuery()
             for(contact in contacts)
             {
                 with(contact){
@@ -76,37 +73,37 @@ object ObjectGetter:GetContactObject {
 
             var mobileNo:String
             if(table == "")
-                return getObject(contacts)
+                return getObject()
             println(table)
             println("\n------------------------Enter The Mobile Number From Above Table --------------------- ")
-            return getObjectFromContacts({contact , value -> contact.user_mobileNo == value} ,"Mobile No")
+            return getObjectFromContacts("phone")
         }
 
         when(choice){
             1 -> getSearchObject(true)?.let { return it }?:run {
                 println("\n--------------- Enter The Valid Mobile No ! --------------\n")
-                getObject(contacts) }
+                getObject() }
 
             2 -> getSearchObject(false)?.let{ return it }?:run {
                 println("\n--------------- Enter The Valid Mobile No !  --------------\n")
-                getObject(contacts)}
+                getObject()}
         }
         return  null
     }
 
 
+    private fun getObjectFromContacts(data: String): Contact? {
 
-
-    private fun getObjectFromContacts(action :( contact:Contact ,value:String ) -> Boolean , data:String):Contact?
-    {
-        var value:String
-        print("Enter the $data : ").also{ value = InputGetter.getUserInput({userInput -> userInput.toString()}) as String }
-
-        for(contact in contacts)
-        {
-            if (action(contact, value))
-                return contact
+        var value: String
+        print("Enter the $data : ").also {
+            value = InputGetter.getUserInput({ userInput -> userInput.toString() }) as String
         }
-        return null
+
+        return SqliteOperation.readQuery("SELECT * FROM contact WHERE $data = \"${value}\"").let{
+            if(it.isNotEmpty())
+                return it[0]
+            return null
+        }
+
     }
 }

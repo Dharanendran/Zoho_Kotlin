@@ -8,8 +8,8 @@ object DeleteContactOperation:GetContactObject by ObjectGetter {
     {
         if(contacts.isNotEmpty())
         {
-            getObject(contacts)?.let {
-                contacts.remove(it)
+            getObject()?.let {
+                SqliteOperation.deletionQuery(it)
                 println("\n-------------- Contact Is SuccessFully Get Deleted --------------")
             }
         }

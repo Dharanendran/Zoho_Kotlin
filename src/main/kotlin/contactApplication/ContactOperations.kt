@@ -3,9 +3,6 @@ package contactApplication
 object ContactOperation
 {
 
-    private var contacts:MutableList<Contact> = mutableListOf<Contact>().apply { add(Contact("kkj","sskdns","wkmn")) }
-
-
     fun viewContact():String?
     {
         println()
@@ -23,20 +20,21 @@ object ContactOperation
                 break
             println("Enter The Number Within The Given Value !")
         }
-
+        val contacts = SqliteOperation.readQuery()
         when(choice)
         {
             1-> return ViewContactOperation.viewFullContactTable(contacts)
             2-> return ViewContactOperation.viewAnyOneData(contacts)
         }
-        return null // -1 means it will return null
+        return null
     }
 
     //2nd block for the Add contact operation
 
     fun addContact()
     {
-        contacts.add(GetContact.newContact())
+
+        SqliteOperation.insertionQuery(GetContact.newContact())
     }
 
 
@@ -44,6 +42,7 @@ object ContactOperation
 
     fun deleteContact()
     {
+        val contacts = SqliteOperation.readQuery()
         DeleteContactOperation.deleteOperation(contacts)
     }
 
@@ -51,11 +50,13 @@ object ContactOperation
 
     fun editContact()
     {
+        val contacts = SqliteOperation.readQuery()
         EditContactOperation.editOperation(contacts)
     }
 
     fun favourite()
     {
+        val contacts = SqliteOperation.readQuery()
         FavouriteOperation.favouriteOptions(contacts)
     }
 

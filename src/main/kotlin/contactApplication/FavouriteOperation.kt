@@ -31,16 +31,22 @@ object FavouriteOperation:GetContactObject by ObjectGetter{
         {
             1 -> addFavourite(contacts)
             2 -> removeFavourite(contacts)
-            3 -> viewFavouriteContacts(contacts)
+            3 -> {
+                var contacts =SqliteOperation.readQuery("SELECT * FROM contact WHERE favourite = 1")
+                viewFavouriteContacts(contacts)
+            }
             -1 -> return
         }
     }
 
     private fun addFavourite(contacts:MutableList<Contact>)
     {
-        getObject(contacts)?.let{
-            if(!it.isFavourite)
-                it.isFavourite = true.also{ println("SuccessFully , The Contact Is Added To Favourite List !") }
+        getObject()?.let{
+            var contactObject = it
+            if(it.isFavourite == 0)
+                it.isFavourite = 1.also{
+                    SqliteOperation.updateQuery(contactObject,contactObject.user_mobileNo,"1")
+                    println("SuccessFully , The Contact Is Added To Favourite List !") }
             else
                 println(" The Contact Is Already In Favourite List !")
         }
@@ -49,9 +55,12 @@ object FavouriteOperation:GetContactObject by ObjectGetter{
 
     private fun removeFavourite(contacts:MutableList<Contact>)
     {
-        getObject(contacts)?.let{
-            if(it.isFavourite)
-                it.isFavourite = false.also{ println("SuccessFully , The Contact Is Removed From Favourite List !") }
+        getObject()?.let{
+            var contactObject = it
+            if(it.isFavourite==1)
+                it.isFavourite = 0.also{
+                    SqliteOperation.updateQuery(contactObject,contactObject.user_mobileNo,"0")
+                    println("SuccessFully , The Contact Is Removed From Favourite List !") }
             else
                 println(" The Contact Is Already Not In Favourite List !")
         }
@@ -59,8 +68,8 @@ object FavouriteOperation:GetContactObject by ObjectGetter{
 
     private fun viewFavouriteContacts(contacts:MutableList<Contact>)
     {
-        if(contacts.any { it.isFavourite })
-             println("\n-------------------------Favourite Contacts--------------------\n").also{ println(ViewContactOperation.viewFullContactTable( contacts.filter { it.isFavourite } as MutableList<Contact> ))}
+        if(contacts.any { it.isFavourite==1 })
+             println("\n-------------------------Favourite Contacts--------------------\n").also{ println(ViewContactOperation.viewFullContactTable( contacts.filter { it.isFavourite==1 } as MutableList<Contact> ))}
         else
             println("\nThere Is No Contacts Present In The Favourite List !")
     }

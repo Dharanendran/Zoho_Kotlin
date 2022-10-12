@@ -1,56 +1,64 @@
 package contactApplication
 
-import sqlitePractise.SqlConnection
 
-class SqliteOperation
-{
-    companion object
-    {
+class SqliteOperation {
+    companion object {
 
-        fun insertionQuery(contact: contactApplication.Contact)
-        {
-            var stmt1 = "INSERT INTO CONTACT(name,email,phone) VALUES (\"${contact.user_name}\",\"${contact.user_emailId}\",\"${contact.user_mobileNo}\")"
-            var stmt2 = contact.address?.let{"INSERT INTO CONTACT(doorNo,street,district,pincode) VALUES (\"${it.door_no}\",\"${it.street}\",\"${it.district}\",\"${it.pin_code}\")"}?:""
-            SqlConnection.statement = SqlConnection.connection.createStatement()
-            SqlConnection.statement.executeUpdate(stmt1+stmt2)
+        fun insertionQuery(contact: contactApplication.Contact) {
+            println(contact.address)
+            var stmt1 =
+                contact.let { "INSERT INTO CONTACT(name,email,phone) VALUES (\"${it.user_name}\",\"${it.user_emailId}\",\"${it.user_mobileNo}\")" }
+            var stmt2 =
+                contact.address?.let { "INSERT INTO CONTACT(name,email,phone,doorNo,street,district,pincode) VALUES (\"${contact.user_name}\",\"${contact.user_emailId}\",\"${contact.user_mobileNo}\",\"${it.door_no}\",\"${it.street}\",\"${it.district}\",\"${it.pin_code}\")" }
+            SQLiteConnector.statement = SQLiteConnector.connection.createStatement()
+            SQLiteConnector.statement.executeUpdate(contact.address?.let { stmt2 } ?: stmt1)
         }
 
 
-        fun deletionQuery(data:String ,value:String)
-        {
-            var stmt = "DELETE FROM CONTACT WHERE $data =$value"
-            SqlConnection.statement.executeUpdate(stmt).also { println("Contact Deleted Successfully !") }
+        fun deletionQuery(contact: Contact) {
+            var stmt = "DELETE FROM CONTACT WHERE phone =\"${contact.user_mobileNo}\""
+            SQLiteConnector.statement = SQLiteConnector.connection.createStatement()
+            SQLiteConnector.statement.executeUpdate(stmt)
         }
 
 
-        fun updateQuery(set :String , value :String ,primaryKey:String,primaryKeyData:String,stmt:String = set+value)
-        {
-            var stmt = "UPDATE CONTACT SET $stmt WHERE $primaryKey =\"$primaryKeyData\""
-            SqlConnection.statement.executeUpdate(stmt)
+        fun updateQuery(contact: Contact, key: String, fav: String = "") {
+
+            var stmt: String
+            if (fav == "")
+            {
+                stmt =contact.let { "name=\"${it.user_name}\",email=\"${it.user_emailId}\",phone=\"${it.user_mobileNo}\"" }
+                if (contact.address != null)
+                    stmt += contact.address?.let { ",3" +
+                            "doorNo =\"${it.door_no}\",street=\"${it.street}\",district=\"${it.district}\",pincode=\"${it.pin_code}\" " }
+            }
+            else
+            {
+                stmt = "favourite =$fav"
+            }
+            SQLiteConnector.statement.executeUpdate("UPDATE contact SET $stmt WHERE phone=\"${key}\"")
             println("Contact Is Updated SuccessFully !")
         }
 
 
-        fun readQuery(stmt:String ="SELECT * FROM CONTACT"):MutableList<MutableMap<String,String>>
-        {
-            var resultArr = mutableListOf<MutableMap<String,String>>()
-            val result = SqlConnection.statement.executeQuery(stmt)
-            var data = mutableMapOf<String,String>()
+        fun readQuery(stmt: String = "SELECT * FROM contact"): MutableList<Contact> {
+            val result = SQLiteConnector.statement.executeQuery(stmt)
+            var contacts = mutableListOf<Contact>()
+            while (result.next()) {
+                var name = result.getString("name")
+                var email = result.getString("email")
+                var phone = result.getString("phone")
+                var doorNo = result.getString("doorNo")
+                var street = result.getString("street")
+                var district = result.getString("district")
+                var pincode = result.getString("pincode")
 
-            while (result.next())
-            {
-                data["name"] = result.getString("name")
-                data["email"] = result.getString("email")
-                data["phone"] = result.getString("phone")
-                data["doorNo"] = result.getString("doorNo")?:""
-                data["street"] = result.getString("street")?:""
-                data["district"] = result.getString("district")?:""
-                data["pincode"] = result.getString("pincode")?:""
-
-                resultArr.add(data.toMutableMap())
-                data.clear()
+                if (doorNo == null)
+                    contacts.add(Contact(name, phone, email))
+                else
+                    contacts.add(Contact(name, phone, email, doorNo, street, district, pincode))
             }
-            return resultArr
+            return contacts
         }
 
     }
