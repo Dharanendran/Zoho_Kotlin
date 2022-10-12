@@ -28,20 +28,18 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="eb455409-9fe6-4c59-beeb-77ae1f2cc3c1">
-      <console name="firstConnection" type="STANDARD" schema="main" session="Main"><![CDATA[insert into contacts(contact_id,first_name,last_name,email,phone) values(3,"dharan","A","dhara@gmail.com","637467751
-");
-select phone from contacts]]></console>
+    <connection id="12a1624e-88d6-4795-a303-038ce7811ef0">
+      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[delete table contacts]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="eb455409-9fe6-4c59-beeb-77ae1f2cc3c1" />
+    <connection id="12a1624e-88d6-4795-a303-038ce7811ef0" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="eb455409-9fe6-4c59-beeb-77ae1f2cc3c1" dataset="main.students" active-filter-id="" />
+    <filter-actions connection-id="12a1624e-88d6-4795-a303-038ce7811ef0" dataset="main.contacts" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -75,9 +73,9 @@ select phone from contacts]]></console>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="eb455409-9fe6-4c59-beeb-77ae1f2cc3c1" active="true" signed="true">
+      <connection id="12a1624e-88d6-4795-a303-038ce7811ef0" active="true" signed="true">
         <database>
-          <name value="firstConnection" />
+          <name value="Connection" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
@@ -124,8 +122,8 @@ select phone from contacts]]></console>
           <restore-workspace value="true" />
           <restore-workspace-deep value="false" />
           <environment-type value="default" />
-          <connectivity-timeout value="20" />
-          <idle-time-to-disconnect value="60" />
+          <connectivity-timeout value="10" />
+          <idle-time-to-disconnect value="30" />
           <idle-time-to-disconnect-pool value="5" />
           <credential-expiry-time value="10" />
           <max-connection-pool-size value="7" />

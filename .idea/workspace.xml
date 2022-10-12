@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0842cb29-bad5-47f0-af69-3a20c6ac908e" name="Changes" comment="exception handled">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/SQLiteConnector.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/SqliteOperation.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/sqlitePractise/MainDummy.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/sqlitePractise/sqliteConnector.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/contactApplication/GetValidData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/GetValidData.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/contactApplication/ObjectGetter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/ObjectGetter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/contactApplication/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +68,14 @@
       <recent name="demo" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt (2)">
+  <component name="RunManager" selected="Kotlin.MainDummyKt">
+    <configuration name="MainDummyKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sqlitePractise.MainDummyKt" />
+      <module name="Sample" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainKt (1)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demo.MainKt" />
       <module name="Sample" />
@@ -98,6 +113,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.MainDummyKt" />
         <item itemvalue="Kotlin.MainKt (2)" />
         <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Kotlin.MainKt (1)" />
@@ -134,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665476389388</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="exception handled">
+      <created>1665476774128</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665476774128</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
