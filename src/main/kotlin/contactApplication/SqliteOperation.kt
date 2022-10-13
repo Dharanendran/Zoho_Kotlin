@@ -5,9 +5,9 @@ class SqliteOperation {
     companion object {
 
         fun insertionQuery(contact: contactApplication.Contact) {
-            var stmt1 =
+            val stmt1 =
                 contact.let { "INSERT INTO CONTACT(name,email,phone) VALUES (\"${it.user_name}\",\"${it.user_emailId}\",\"${it.user_mobileNo}\")" }
-            var stmt2 =
+            val stmt2 =
                 contact.address?.let { "INSERT INTO CONTACT(name,email,phone,doorNo,street,district,pincode) VALUES (\"${contact.user_name}\",\"${contact.user_emailId}\",\"${contact.user_mobileNo}\",\"${it.door_no}\",\"${it.street}\",\"${it.district}\",\"${it.pin_code}\")" }
             SQLiteConnector.statement = SQLiteConnector.connection.createStatement()
             SQLiteConnector.statement.executeUpdate(contact.address?.let { stmt2 } ?: stmt1)
@@ -15,7 +15,7 @@ class SqliteOperation {
 
 
         fun deletionQuery(contact: Contact) {
-            var stmt = "DELETE FROM CONTACT WHERE phone =\"${contact.user_mobileNo}\""
+            val stmt = "DELETE FROM CONTACT WHERE phone =\"${contact.user_mobileNo}\""
             SQLiteConnector.statement = SQLiteConnector.connection.createStatement()
             SQLiteConnector.statement.executeUpdate(stmt)
         }
@@ -41,16 +41,16 @@ class SqliteOperation {
 
         fun readQuery(stmt: String = "SELECT * FROM contact"): MutableList<Contact> {
             val result = SQLiteConnector.statement.executeQuery(stmt)
-            var contacts = mutableListOf<Contact>()
+            val contacts = mutableListOf<Contact>()
             while (result.next()) {
-                var name = result.getString("name")
-                var email = result.getString("email")
-                var phone = result.getString("phone")
-                var doorNo = result.getString("doorNo")
-                var street = result.getString("street")
-                var district = result.getString("district")
-                var pincode = result.getString("pincode")
-                var favourite = result.getString("favourite")
+                val name = result.getString("name")
+                val email = result.getString("email")
+                val phone = result.getString("phone")
+                val doorNo = result.getString("doorNo")
+                val street = result.getString("street")
+                val district = result.getString("district")
+                val pincode = result.getString("pincode")
+                val favourite = result.getString("favourite")
 
                 if (doorNo == null)
                     contacts.add(Contact(name, phone, email,favourite?:"0"))
