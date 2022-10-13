@@ -99,7 +99,7 @@ object ObjectGetter:GetContactObject {
             value = InputGetter.getUserInput({ userInput -> userInput.toString() }) as String
         }
 
-        var obj = SqliteOperation.readQuery("SELECT * FROM contact WHERE phone = \"$value\" ")
+        val obj = SqliteOperation.readQuery("SELECT * FROM contact WHERE $data = \"$value\" ")
         if(obj.isEmpty())
             return null
         return obj[0]
