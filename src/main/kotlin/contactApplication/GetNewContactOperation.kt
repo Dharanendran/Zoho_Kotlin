@@ -26,7 +26,7 @@ object GetContact:AddressGetter(){
 
         when(choice)
         {
-            1 -> getAddress().also{ newContact = Contact(name ,mobileNo,mailId,doorNo,streetName, district , pinCode ) }
+            1 -> getAddress().also{ newContact = Contact(name ,mobileNo,mailId,"0",doorNo,streetName, district , pinCode ) }
             2 -> newContact = Contact(name ,mobileNo,mailId)
         }
 

@@ -43,8 +43,8 @@ object FavouriteOperation:GetContactObject by ObjectGetter{
     {
         getObject()?.let{
             var contactObject = it
-            if(it.isFavourite == 0)
-                it.isFavourite = 1.also{
+            if(it.isFavourite == "0")
+                it.isFavourite = "1".also{
                     SqliteOperation.updateQuery(contactObject,contactObject.user_mobileNo,"1")
                     println("SuccessFully , The Contact Is Added To Favourite List !") }
             else
@@ -57,10 +57,13 @@ object FavouriteOperation:GetContactObject by ObjectGetter{
     {
         getObject()?.let{
             var contactObject = it
-            if(it.isFavourite==1)
-                it.isFavourite = 0.also{
-                    SqliteOperation.updateQuery(contactObject,contactObject.user_mobileNo,"0")
-                    println("SuccessFully , The Contact Is Removed From Favourite List !") }
+            if(it.isFavourite=="1")
+            {
+                it.isFavourite = "0".also {
+                    SqliteOperation.updateQuery(contactObject, contactObject.user_mobileNo, "0")
+                    println("SuccessFully , The Contact Is Removed From Favourite List !")
+                }
+            }
             else
                 println(" The Contact Is Already Not In Favourite List !")
         }
@@ -68,8 +71,8 @@ object FavouriteOperation:GetContactObject by ObjectGetter{
 
     private fun viewFavouriteContacts(contacts:MutableList<Contact>)
     {
-        if(contacts.any { it.isFavourite==1 })
-             println("\n-------------------------Favourite Contacts--------------------\n").also{ println(ViewContactOperation.viewFullContactTable( contacts.filter { it.isFavourite==1 } as MutableList<Contact> ))}
+        if(contacts.isNotEmpty())
+             println("\n-------------------------Favourite Contacts--------------------\n").also{ println(ViewContactOperation.viewFullContactTable( contacts ))}
         else
             println("\nThere Is No Contacts Present In The Favourite List !")
     }

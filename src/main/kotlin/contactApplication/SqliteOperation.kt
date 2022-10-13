@@ -23,13 +23,12 @@ class SqliteOperation {
 
 
         fun updateQuery(contact: Contact, key: String, fav: String = "") {
-
             var stmt: String
             if (fav == "")
             {
                 stmt =contact.let { "name=\"${it.user_name}\",email=\"${it.user_emailId}\",phone=\"${it.user_mobileNo}\"" }
                 if (contact.address != null)
-                    stmt += contact.address?.let { ",3" +
+                    stmt += contact.address?.let { "," +
                             "doorNo =\"${it.door_no}\",street=\"${it.street}\",district=\"${it.district}\",pincode=\"${it.pin_code}\" " }
             }
             else
@@ -52,11 +51,12 @@ class SqliteOperation {
                 var street = result.getString("street")
                 var district = result.getString("district")
                 var pincode = result.getString("pincode")
+                var favourite = result.getString("favourite")
 
                 if (doorNo == null)
-                    contacts.add(Contact(name, phone, email))
+                    contacts.add(Contact(name, phone, email,favourite?:"0"))
                 else
-                    contacts.add(Contact(name, phone, email, doorNo, street, district, pincode))
+                    contacts.add(Contact(name, phone, email,favourite?:"0", doorNo, street, district, pincode))
             }
             return contacts
         }
