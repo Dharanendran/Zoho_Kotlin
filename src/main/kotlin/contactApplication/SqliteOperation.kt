@@ -5,7 +5,6 @@ class SqliteOperation {
     companion object {
 
         fun insertionQuery(contact: contactApplication.Contact) {
-            println(contact.address)
             var stmt1 =
                 contact.let { "INSERT INTO CONTACT(name,email,phone) VALUES (\"${it.user_name}\",\"${it.user_emailId}\",\"${it.user_mobileNo}\")" }
             var stmt2 =
