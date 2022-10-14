@@ -1,4 +1,7 @@
-package contactApplication
+package contactApplication.contactOperations
+
+import contactApplication.Contact
+import contactApplication.getters.InputGetter
 
 object ViewContactOperation{
 
@@ -8,7 +11,7 @@ object ViewContactOperation{
         if(contacts.isEmpty())
             return println("\n==========================There Is Not Contact To Show ! Please Add Contact ---------------------------").let{return ""}
 
-        var contactHead =
+        val contactHead =
             " _________________________________________________________________________________________\n"+
                     "|S.NO|         NAME            |           MAIL ID               |        Number          |\n"+
                     "|____|_________________________|_________________________________|________________________|"
@@ -33,7 +36,8 @@ object ViewContactOperation{
             contactBody+="\n|____|_________________________|_________________________________|________________________|"
 
         }
-        var addressHead=
+
+        val addressHead=
             "\n _________________________________________________________________________________________"+
             "\n|                                                                                         |"+
             "\n|                                    ADDRESS DETAILS                                      |"+
@@ -46,9 +50,9 @@ object ViewContactOperation{
             addressBody+=
                 java.lang.String.format(
                     "\n| %s  |        %-17s|      %-26s |        %-15s |", i,
-                    contacts[i - 1].address?.let{it.door_no}?:"-",
-                    contacts[i - 1].address?.let{it.street}?:"-",
-                    contacts[i - 1].address?.let{it.pin_code}?:"-",
+                    contacts[i - 1].address?.door_no ?:"-",
+                    contacts[i - 1].address?.street ?:"-",
+                    contacts[i - 1].address?.pin_code ?:"-",
                 )
             addressBody+=
                 "\n|____|_________________________|_________________________________|________________________|"

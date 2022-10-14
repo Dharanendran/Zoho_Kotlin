@@ -1,8 +1,11 @@
-package contactApplication
+package contactApplication.getters
 
-import java.util.*
+import contactApplication.Contact
+import contactApplication.dataBase.SqliteOperation
+import contactApplication.contactOperations.ViewContactOperation
+import contactApplication.getObjectInterface.GetContactObject
 
-object ObjectGetter:GetContactObject {
+object ObjectGetter: GetContactObject {
 
 
     override fun getObject(): Contact?
@@ -38,7 +41,7 @@ object ObjectGetter:GetContactObject {
 
 
 
-    private fun searchBy():Contact?
+    private fun searchBy(): Contact?
     {
         println()
         println("""---------> Press 1 Contains Element
@@ -53,12 +56,12 @@ object ObjectGetter:GetContactObject {
             println("--------------------- Enter The Value From The Given Option -----------------")
         }
 
-        fun getSearchObject(containState :Boolean):Contact?
+        fun getSearchObject(containState :Boolean): Contact?
         {
             var text:String
             val textContainsContacts = mutableListOf<Contact>()
             val textNotContainsContact= mutableListOf<Contact>()
-            print("Enter the Text : ").also{text = (InputGetter.getUserInput({userInput -> userInput.toString()}) as String).lowercase().trim() }
+            print("Enter the Text : ").also{text = (InputGetter.getUserInput({ userInput -> userInput.toString()}) as String).lowercase().trim() }
             var contacts = SqliteOperation.readQuery()
             for(contact in contacts)
             {
@@ -69,7 +72,8 @@ object ObjectGetter:GetContactObject {
                         textNotContainsContact.add(this) }
             }
 
-            var table = ViewContactOperation.viewFullContactTable(if(containState)textContainsContacts else textNotContainsContact)
+            val table =
+                ViewContactOperation.viewFullContactTable(if (containState) textContainsContacts else textNotContainsContact)
 
             var mobileNo:String
             if(table == "")
@@ -86,7 +90,8 @@ object ObjectGetter:GetContactObject {
 
             2 -> getSearchObject(false)?.let{ return it }?:run {
                 println("\n--------------- Enter The Valid Mobile No !  --------------\n")
-                getObject()}
+                getObject()
+            }
         }
         return  null
     }

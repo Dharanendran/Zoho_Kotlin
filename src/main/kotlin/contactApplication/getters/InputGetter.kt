@@ -1,8 +1,7 @@
-package contactApplication
+package contactApplication.getters
 
 object InputGetter
 {
-
     fun getUserInput(func: (userInput: String?) -> Any , message:String ="Enter The Option : "):Any {
         while(true) {
             var userInput: String? = readLine()

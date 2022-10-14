@@ -1,8 +1,14 @@
-package contactApplication
+package contactApplication.contactOperations
 
-import org.omg.PortableInterceptor.USER_EXCEPTION
+import contactApplication.*
+import contactApplication.dataBase.SqliteOperation
+import contactApplication.getObjectInterface.GetContactObject
+import contactApplication.getters.AddressGetter
+import contactApplication.getters.InputGetter
+import contactApplication.getters.ObjectGetter
+import contactApplication.validation.GetValidData
 
-object EditContactOperation:GetContactObject by ObjectGetter,AddressGetter()
+object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
 {
     fun  editOperation(contacts: MutableList<Contact>)
     {
@@ -47,7 +53,7 @@ object EditContactOperation:GetContactObject by ObjectGetter,AddressGetter()
 
             }
             var primaryKey = editContact.user_mobileNo
-            editor(editContact, newValue).also{ SqliteOperation.updateQuery(editContact,primaryKey)}
+            editor(editContact, newValue).also{ SqliteOperation.updateQuery(editContact, primaryKey) }
         }
 
 
@@ -98,7 +104,7 @@ object EditContactOperation:GetContactObject by ObjectGetter,AddressGetter()
                 {
                     1 -> getAddress().also{
                         editContact.address = Address(doorNo,streetName,district,pinCode)
-                        SqliteOperation.updateQuery(editContact,editContact.user_mobileNo)
+                        SqliteOperation.updateQuery(editContact, editContact.user_mobileNo)
                     }
                 }
 

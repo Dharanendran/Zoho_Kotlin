@@ -1,10 +1,12 @@
-package contactApplication
+package contactApplication.dataBase
+
+import contactApplication.Contact
 
 
 class SqliteOperation {
     companion object {
 
-        fun insertionQuery(contact: contactApplication.Contact) {
+        fun insertionQuery(contact: Contact) {
             val stmt1 =
                 contact.let { "INSERT INTO CONTACT(name,email,phone) VALUES (\"${it.user_name}\",\"${it.user_emailId}\",\"${it.user_mobileNo}\")" }
             val stmt2 =

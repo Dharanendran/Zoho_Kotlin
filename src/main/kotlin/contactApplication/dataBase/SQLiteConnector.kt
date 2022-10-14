@@ -1,4 +1,4 @@
-package contactApplication
+package contactApplication.dataBase
 
 import java.sql.Connection
 import java.sql.DriverManager

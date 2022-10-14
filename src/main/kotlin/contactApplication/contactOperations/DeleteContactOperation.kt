@@ -1,6 +1,11 @@
-package contactApplication
+package contactApplication.contactOperations
 
-object DeleteContactOperation:GetContactObject by ObjectGetter {
+import contactApplication.Contact
+import contactApplication.getObjectInterface.GetContactObject
+import contactApplication.getters.ObjectGetter
+import contactApplication.dataBase.SqliteOperation
+
+object DeleteContactOperation: GetContactObject by ObjectGetter {
 
     lateinit var contacts: MutableList<Contact>
 

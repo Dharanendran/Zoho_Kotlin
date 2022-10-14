@@ -1,5 +1,7 @@
-package contactApplication
+package contactApplication.validation
 
+import contactApplication.dataBase.SqliteOperation
+import contactApplication.getters.InputGetter
 import java.util.regex.Pattern
 
 class GetValidData {

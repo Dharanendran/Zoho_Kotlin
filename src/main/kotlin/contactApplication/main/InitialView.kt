@@ -1,4 +1,7 @@
-package contactApplication
+package contactApplication.main
+
+import contactApplication.ContactOperation
+import contactApplication.getters.InputGetter
 
 object InitialView{
 

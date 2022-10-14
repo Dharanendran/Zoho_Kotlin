@@ -1,6 +1,10 @@
 package contactApplication
 
-object GetContact:AddressGetter(){
+import contactApplication.getters.AddressGetter
+import contactApplication.getters.InputGetter
+import contactApplication.validation.GetValidData
+
+object GetContact: AddressGetter(){
 
     fun newContact():Contact
     {

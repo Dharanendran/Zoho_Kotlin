@@ -1,5 +1,12 @@
 package contactApplication
 
+import contactApplication.contactOperations.DeleteContactOperation
+import contactApplication.contactOperations.EditContactOperation
+import contactApplication.contactOperations.FavouriteOperation
+import contactApplication.contactOperations.ViewContactOperation
+import contactApplication.dataBase.SqliteOperation
+import contactApplication.getters.InputGetter
+
 object ContactOperation
 {
 

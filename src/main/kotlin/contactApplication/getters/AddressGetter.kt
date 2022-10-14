@@ -1,4 +1,4 @@
-package contactApplication
+package contactApplication.getters
 
 open class AddressGetter{
 
