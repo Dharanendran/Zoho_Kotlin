@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0842cb29-bad5-47f0-af69-3a20c6ac908e" name="Changes" comment="exception handled">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/SQLiteConnector.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/SqliteOperation.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/sqlitePractise/MainDummy.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/sqlitePractise/sqliteConnector.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="0842cb29-bad5-47f0-af69-3a20c6ac908e" name="Changes" comment="packageSegregated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/contactApplication/GetValidData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/GetValidData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/contactApplication/ObjectGetter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/ObjectGetter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/contactApplication/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/contactApplication/contactOperations/EditContactOperation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/contactOperations/EditContactOperation.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/contactApplication/dataBase/SQLiteConnector.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/contactApplication/dataBase/SQLiteConnector.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,11 +58,14 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin/demo" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
-      <recent name="contactApplication" />
-      <recent name="demo" />
+      <recent name="contactApplication.dataBase" />
+      <recent name="contactApplication.main" />
+      <recent name="contactApplication.contactOperations" />
+      <recent name="contactApplication.validation" />
+      <recent name="contactApplication.dataClasses" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainDummyKt">
+  <component name="RunManager" selected="Kotlin.MainKt (2)">
     <configuration name="MainDummyKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sqlitePractise.MainDummyKt" />
       <module name="Sample" />
@@ -113,8 +110,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.MainDummyKt" />
         <item itemvalue="Kotlin.MainKt (2)" />
+        <item itemvalue="Kotlin.MainDummyKt" />
         <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Kotlin.MainKt (1)" />
       </list>
@@ -157,7 +154,63 @@
       <option name="project" value="LOCAL" />
       <updated>1665476774128</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="db">
+      <created>1665571430208</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665571430208</updated>
+    </task>
+    <task id="LOCAL-00006" summary="db">
+      <created>1665571477263</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665571477263</updated>
+    </task>
+    <task id="LOCAL-00007" summary="db">
+      <created>1665571640731</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1665571640731</updated>
+    </task>
+    <task id="LOCAL-00008" summary=" db connected">
+      <created>1665592809912</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1665592809912</updated>
+    </task>
+    <task id="LOCAL-00009" summary=" db connected">
+      <created>1665640308655</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1665640308655</updated>
+    </task>
+    <task id="LOCAL-00010" summary=" db connected">
+      <created>1665649821233</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1665649821233</updated>
+    </task>
+    <task id="LOCAL-00011" summary=".">
+      <created>1665672685293</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1665672685293</updated>
+    </task>
+    <task id="LOCAL-00012" summary="packageSegregated">
+      <created>1665738610838</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1665738610838</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,7 +227,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="by using kotlin unique keywords amd functionalities" />
     <MESSAGE value="exception handled" />
-    <option name="LAST_COMMIT_MESSAGE" value="exception handled" />
+    <MESSAGE value="db" />
+    <MESSAGE value=" db connected" />
+    <MESSAGE value="." />
+    <MESSAGE value="packageSegregated" />
+    <option name="LAST_COMMIT_MESSAGE" value="packageSegregated" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

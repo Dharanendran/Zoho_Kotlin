@@ -12,7 +12,7 @@ object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
 {
     fun  editOperation(contacts: MutableList<Contact>)
     {
-        lateinit var editContact: Contact
+        var editContact: Contact? = null
 
         if(contacts.isNotEmpty()) { getObject()?.let { editContact = it }}
         else{
@@ -52,14 +52,18 @@ object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
                             }
 
             }
-            var primaryKey = editContact.user_mobileNo
-            editor(editContact, newValue).also{ SqliteOperation.updateQuery(editContact, primaryKey) }
+            var primaryKey = editContact?.user_mobileNo
+            editContact?.let { editor(it, newValue).also{
+                if (primaryKey != null) {
+                    SqliteOperation.updateQuery(editContact!!, primaryKey)
+                }
+            } }
         }
 
 
         fun addressDetailsEditor() {
 
-            editContact.address?.let {
+            editContact?.address?.let {
                 println()
                 println("""--------> Press 1 To Edit Door NO 
                           |--------> Press 2 To Edit Street Name
@@ -103,8 +107,8 @@ object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
                 when (userInput)
                 {
                     1 -> getAddress().also{
-                        editContact.address = Address(doorNo,streetName,district,pinCode)
-                        SqliteOperation.updateQuery(editContact, editContact.user_mobileNo)
+                        editContact?.address = Address(doorNo,streetName,district,pinCode)
+                        editContact?.let { it1 -> SqliteOperation.updateQuery(it1, editContact!!.user_mobileNo) }
                     }
                 }
 

@@ -20,7 +20,7 @@ object SQLiteConnector
         try
         {
             connection = DriverManager.getConnection(url)
-            var stmt =
+            val stmt =
                 """CREATE TABLE IF NOT EXISTS CONTACT(
                 |"contact_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
                 |"name" TEXT NOT NULL, 
