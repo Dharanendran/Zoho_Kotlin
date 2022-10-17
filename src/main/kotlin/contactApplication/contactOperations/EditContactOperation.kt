@@ -10,11 +10,12 @@ import contactApplication.validation.GetValidData
 
 object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
 {
+    lateinit var editContact: Contact
+
     fun  editOperation(contacts: MutableList<Contact>)
     {
-        var editContact: Contact? = null
 
-        if(contacts.isNotEmpty()) { getObject()?.let { editContact = it }}
+        if(contacts.isNotEmpty()) { getObject()?.let { editContact = it }?:println("The Number You Entered Is Not Present In The List !").also{return}}
         else{
             println("------------- There Is No Contact In Contact List To Edit ! ------------")
             return
@@ -52,18 +53,16 @@ object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
                             }
 
             }
-            var primaryKey = editContact?.user_mobileNo
-            editContact?.let { editor(it, newValue).also{
-                if (primaryKey != null) {
-                    SqliteOperation.updateQuery(editContact!!, primaryKey)
-                }
+            var primaryKey = editContact.user_mobileNo
+            editContact.let { editor(it, newValue).also{
+                SqliteOperation.updateQuery(editContact, primaryKey)
             } }
         }
 
 
         fun addressDetailsEditor() {
 
-            editContact?.address?.let {
+            editContact.address?.let {
                 println()
                 println("""--------> Press 1 To Edit Door NO 
                           |--------> Press 2 To Edit Street Name
@@ -107,8 +106,8 @@ object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
                 when (userInput)
                 {
                     1 -> getAddress().also{
-                        editContact?.address = Address(doorNo,streetName,district,pinCode)
-                        editContact?.let { it1 -> SqliteOperation.updateQuery(it1, editContact!!.user_mobileNo) }
+                        editContact.address = Address(doorNo,streetName,district,pinCode)
+                        editContact.let { it1 -> SqliteOperation.updateQuery(it1, editContact.user_mobileNo) }
                     }
                 }
 
