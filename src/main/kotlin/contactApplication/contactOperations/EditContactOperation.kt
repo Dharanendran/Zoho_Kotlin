@@ -7,11 +7,13 @@ import contactApplication.getters.AddressGetter
 import contactApplication.getters.InputGetter
 import contactApplication.getters.ObjectGetter
 import contactApplication.validation.GetValidData
+import javax.sound.sampled.DataLine.Info
 
 object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
 {
-    lateinit var editContact: Contact
 
+    private lateinit var editContact: Contact
+    enum class Entity{ NAME , NUMBER , MAILID , DOORNO , STREET , PINCODE , DISTRICT }
     fun  editOperation(contacts: MutableList<Contact>)
     {
 
@@ -40,20 +42,19 @@ object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
         }
 
 
-        fun detailsEditor(editor: (contact: Contact, newValue: String) -> Unit, message: String)
+        fun detailsEditor(editor: (contact: Contact, newValue: String) -> Unit, info:Entity)
         {
             var newValue: String
-            print("Enter the New $message : ").also {
-                newValue = when(message)
+            print("Enter the New $info : ").also {
+                newValue = when(info)
                             {
-                                "Mobile Number" -> GetValidData.getValidNumber()
-                                "Mail Id"       -> GetValidData.getValidEmail()
-                                "PIN Code"      -> GetValidData.getValidPinCode()
-                                 else           -> InputGetter.getUserInput({ userInput -> userInput!!.toString() }) as String
+                             Entity.NUMBER -> GetValidData.getValidNumber()
+                             Entity.MAILID -> GetValidData.getValidEmail()
+                             Entity.PINCODE -> GetValidData.getValidPinCode()
+                             else -> InputGetter.getUserInput({ userInput -> userInput!!.toInt() }) as String
                             }
-
             }
-            var primaryKey = editContact.user_mobileNo
+            val primaryKey = editContact.user_mobileNo
             editContact.let { editor(it, newValue).also{
                 SqliteOperation.updateQuery(editContact, primaryKey)
             } }
@@ -82,10 +83,10 @@ object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
                 }
 
                 when (userInput) {
-                    1 -> detailsEditor({ contact, newValue -> contact.address?.door_no = newValue }, "Door No")
-                    2 -> detailsEditor({ contact, newValue -> contact.address?.street = newValue }, "Street ")
-                    3 -> detailsEditor({ contact, newValue -> contact.address?.district = newValue }, "District Name")
-                    4 -> detailsEditor({ contact, newValue -> contact.address?.pin_code = newValue }, "PIN Code")
+                    1 -> detailsEditor({ contact, newValue -> contact.address?.door_no = newValue }, Entity.DOORNO)
+                    2 -> detailsEditor({ contact, newValue -> contact.address?.street = newValue }, Entity.STREET)
+                    3 -> detailsEditor({ contact, newValue -> contact.address?.district = newValue }, Entity.DISTRICT)
+                    4 -> detailsEditor({ contact, newValue -> contact.address?.pin_code = newValue }, Entity.PINCODE)
                 }
             } ?: run {
 
@@ -116,9 +117,9 @@ object EditContactOperation: GetContactObject by ObjectGetter, AddressGetter()
         }
 
         when (choice) {
-            1 -> detailsEditor({ contact, newValue -> contact.user_name = newValue }, "Name")
-            2 -> detailsEditor({ contact, newValue -> contact.user_mobileNo = newValue }, "Mobile Number")
-            3 -> detailsEditor({ contact, newValue -> contact.user_emailId = newValue }, "Mail Id")
+            1 -> detailsEditor({ contact, newValue -> contact.user_name = newValue },Entity.NAME)
+            2 -> detailsEditor({ contact, newValue -> contact.user_mobileNo = newValue },Entity.NUMBER)
+            3 -> detailsEditor({ contact, newValue -> contact.user_emailId = newValue }, Entity.MAILID)
             4 -> addressDetailsEditor()
         }
     }

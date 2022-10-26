@@ -8,7 +8,6 @@ import contactApplication.getters.ObjectGetter
 
 object FavouriteOperation: GetContactObject by ObjectGetter {
 
-
     fun favouriteOptions(contacts:MutableList<Contact>)
     {
         if(contacts.isEmpty())
@@ -38,7 +37,7 @@ object FavouriteOperation: GetContactObject by ObjectGetter {
             1 -> addFavourite(contacts)
             2 -> removeFavourite(contacts)
             3 -> {
-                var contacts = SqliteOperation.readQuery("SELECT * FROM contact WHERE favourite = 1")
+                val contacts = SqliteOperation.readQuery("SELECT * FROM contact WHERE favourite = 1")
                 viewFavouriteContacts(contacts)
             }
             -1 -> return
@@ -48,7 +47,7 @@ object FavouriteOperation: GetContactObject by ObjectGetter {
     private fun addFavourite(contacts:MutableList<Contact>)
     {
         getObject()?.let{
-            var contactObject = it
+            val contactObject = it
             if(it.isFavourite == "0")
                 it.isFavourite = "1".also{
                     SqliteOperation.updateQuery(contactObject, contactObject.user_mobileNo, "1")
@@ -62,7 +61,7 @@ object FavouriteOperation: GetContactObject by ObjectGetter {
     private fun removeFavourite(contacts:MutableList<Contact>)
     {
         getObject()?.let{
-            var contactObject = it
+            val contactObject = it
             if(it.isFavourite=="1")
             {
                 it.isFavourite = "0".also {
